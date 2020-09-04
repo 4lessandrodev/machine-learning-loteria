@@ -103,6 +103,14 @@ module.exports = function(sequelize, DataTypes) {
     timestamps:false
   });
 
+  Concurso.associate = (models) => {
+    Concurso.belongsToMany(models.NumeroSorteado, {
+      through: 'concursos_tem_numeros',
+      as: 'numbers',
+      foreignKey: 'concurso_id',
+      timestamps: false 
+    });
+  };
 
   return Concurso;
 };

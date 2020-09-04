@@ -29,6 +29,13 @@ module.exports = function(sequelize, DataTypes) {
     timestamps:false
   });
 
+  Frequencia.associate = (models) => {
+    Frequencia.belongsTo(models.NumeroSorteado, {
+      as: 'freq_num',
+      foreignKey: 'numero_id'
+    });
+  };
+
   return Frequencia;
 
 };
