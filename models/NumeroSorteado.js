@@ -1,11 +1,10 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('NumeroSorteado', {
+  const NumeroSorteado = sequelize.define('NumeroSorteado', {
     'id': {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
       primaryKey: true,
       comment: "null",
       autoIncrement: true
@@ -19,4 +18,7 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'numeros_sorteados',
     timestamps:false
   });
+
+  return NumeroSorteado;
+
 };
