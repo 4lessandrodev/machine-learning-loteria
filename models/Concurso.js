@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('concursos', {
+  return sequelize.define('Concurso', {
     'id': {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -99,6 +99,7 @@ module.exports = function(sequelize, DataTypes) {
       comment: "null"
     }
   }, {
-    tableName: 'concursos'
+    tableName: 'concursos',
+    timestamps:false
   });
 };

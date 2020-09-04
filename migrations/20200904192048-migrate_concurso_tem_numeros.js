@@ -2,20 +2,31 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
+     await queryInterface.createTable('concursos_tem_numeros', {
+    'concurso_id': {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true,
+      comment: "null",
+      references: {
+        model: 'concursos',
+        key: 'id'
+      }
+    },
+    'numero_id': {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true,
+      comment: "null",
+      references: {
+        model: 'numeros_sorteados',
+        key: 'id'
+      }
+    }
+        });
   },
 
   down: async (queryInterface, Sequelize) => {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+     await queryInterface.dropTable('concursos_tem_numeros');
   }
 };
