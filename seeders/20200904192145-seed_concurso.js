@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => { await queryInterface.sequelize.query(`INSERT INTO concursos (id, arrecadacao_total, ganhadores_15_numeros, ganhadores_14_numeros, ganhadores_13_numeros,
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.sequelize.query(`INSERT INTO concursos (id, arrecadacao_total, ganhadores_15_numeros, ganhadores_14_numeros, ganhadores_13_numeros,
 ganhadores_12_numeros, ganhadores_11_numeros, valor_rateio_15_numeros, valor_rateio_14_numeros, valor_rateio_13_numeros,
 valor_rateio_12_numeros, valor_rateio_11_numeros, valor_acumulado_15_numeros, estimativa_premio, valor_acumulado_especial, data) VALUES("1","0","5","154","4645","48807","257593","49765.82","689.84","10","4","2","0","0","0",	"	2003-09-29	"), ("2","0","1","184","6232","81252","478188","596323.7","1388.95","10","4","2","0","0","0",	"	2003-10-06	"), ("3","0","2","158","6897","96244","608211","400623.7","2173.36","10","4","2","0","0","0",	"	2003-10-13	"), ("4","0","1","258","9569","123912","706657","902226.02","1498.72","10","4","2","0","0","0",	"	2003-10-20	"),
 ("5","0","2","472","14736","195636","860992","380017.55","687.49","10","4","2","0","0","0",	"	2003-10-27	"),
@@ -2027,10 +2028,8 @@ valor_rateio_12_numeros, valor_rateio_11_numeros, valor_acumulado_15_numeros, es
 ("2025","19450482.5","6","667","15286","146620","675581","231866.61","624.76","25","10","5","0","1200000","83007887.64",	"	2020-08-31	"),
 ("2026","15533937.5","0","161","6396","92040","514465","0","1741.63","25","10","5","1337300.21","3400000","83331428.02",	"	2020-09-01	"),
 ("2027","23255312.5","2","408","13288","146003","782964","1617835.87","1393.71","25","10","5","0","1200000","83790711.47",	"	2020-09-02	"),
-("2028","15229770","1","263","6163","92036","531776","1245054.98","1418.03","25","10","5","0","1500000","84091934.47",	"	2020-09-03	");
-');`
+("2028","15229770","1","263","6163","92036","531776","1245054.98","1418.03","25","10","5","0","1500000","84091934.47",	"	2020-09-03	");`);
   },
-
   down: async (queryInterface, Sequelize) => {
       await queryInterface.bulkDelete('concursos', null, {});
   }

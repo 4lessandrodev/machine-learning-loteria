@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
      await queryInterface.createTable('concursos_tem_numeros', {
     'concurso_id': {
-      type: DataTypes.INTEGER(11),
+      type: Sequelize.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       comment: "null",
@@ -14,7 +14,7 @@ module.exports = {
       }
     },
     'numero_id': {
-      type: DataTypes.INTEGER(11),
+      type: Sequelize.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       comment: "null",

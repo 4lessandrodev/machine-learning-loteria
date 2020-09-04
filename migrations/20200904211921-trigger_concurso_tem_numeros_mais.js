@@ -12,6 +12,6 @@ CREATE TRIGGER atualizar_frequencia_mais AFTER INSERT ON concursos_tem_numeros F
   },
 
   down: async (queryInterface, Sequelize) => {
-     await queryInterface.dropTable('DROP TRIGGER atualizar_frequencia_mais');
+     await queryInterface.sequelize.query('DROP TRIGGER atualizar_frequencia_mais');
   }
 };
