@@ -99,8 +99,7 @@ module.exports = {
       defaultValue: '0.00',
       comment: "null"
     }
-      }
-        );
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
