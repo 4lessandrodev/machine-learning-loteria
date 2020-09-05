@@ -1,14 +1,66 @@
-const { Concurso } = require('../models');
+const { Concurso, NumeroSorteado } = require('../models');
+const algoritmo = require('../middlewares/algoritmo');
+const result = require('../middlewares/result');
 module.exports = {
-
+    
     index: async (req, res) => {
         try {
-            const concursos = await Concurso.findAll({ limit: 10 });
-            return res.status(200).json({ concursos });
+
+            let { quantidade = 15, peso='nao', acumulados='nao' } = req.query;
+            let concursos = [];
+            let ultimosConcursos = [];
+
+
+            const geral = await Concurso.findAll({
+                include: [
+                    {
+                        model: NumeroSorteado,
+                        as:'numeros',
+                        required: true,
+                        attributes:['numero']
+                    }
+                ],
+                order: [['id', 'ASC']],
+            });
+
+            if (peso === 'sim') {
+                concursos = await Concurso.findAll({
+                    include: [
+                        {
+                            model: NumeroSorteado,
+                            as: 'numeros',
+                            required: true,
+                            attributes: ['numero']
+                        }
+                    ],
+                    limit: 700,
+                    order: [['id', 'DESC']],
+                });
+            }
+
+            if (acumulados === 'sim') {
+                ultimosConcursos = await Concurso.findAll({
+                    include: [
+                        {
+                            model: NumeroSorteado,
+                            as: 'numeros',
+                            required: true,
+                            attributes: ['numero']
+                        }
+                    ],
+                    where: { ganhadores_15_numeros: 0 },
+                    order: [['id', 'DESC']],
+                });
+            }
+
+            await algoritmo.apuracao([...concursos, ...ultimosConcursos, ...geral]);    
+            const resultado = await result.calculate();
+            return res.status(200).json({msg:'Lotofácil: Números mais prováveis de sair no intervalo de 7 jogos', resultado: resultado.slice(0, quantidade) });
+            
         } catch (error) {
             console.error(error.message);
             return status(500).json({ error: error.message });
         }
     }
-
+    
 };

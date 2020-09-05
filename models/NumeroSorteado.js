@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
   NumeroSorteado.associate = (models) => {
     NumeroSorteado.belongsToMany(models.Concurso, {
       through: 'concursos_tem_numeros',
-      as: 'numbers',
+      as: 'numeros',
       foreignKey: 'numero_id',
       timestamps: false 
     });

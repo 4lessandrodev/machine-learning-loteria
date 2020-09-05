@@ -106,7 +106,7 @@ module.exports = function(sequelize, DataTypes) {
   Concurso.associate = (models) => {
     Concurso.belongsToMany(models.NumeroSorteado, {
       through: 'concursos_tem_numeros',
-      as: 'numbers',
+      as: 'numeros',
       foreignKey: 'concurso_id',
       timestamps: false 
     });
