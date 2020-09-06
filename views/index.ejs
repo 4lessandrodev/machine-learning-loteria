@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<head>
+  <title><%= title %></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+  <header class="header">
+    <h1>Lotofácil</h1>
+    <h2>Bem vindo ao AD900</h2>
+    <div class="container">
+      <h5>Algorítmo criado para identificar padrões no histórico de números da lotofácil sorteados ao longo dos anos. Gera-se um padrão de possíveis números a serem sorteados, o algorítmo foi desenvolvido baseado em machine learning de classificação de dados.</h5>
+    </div>
+  </header>
+  <main class="container main">
+    
+    <div>
+      <h2 class="subtitulo">Parêmetros</h2>
+      <div>
+        <form action="" method="GET">
+          <div class="form-group form__content">
+            <select class="select-option" name="peso">
+              <option value="nao">Peso geral</option>
+              <option value="sim">Peso maior ult. concursos</option>
+            </select>
+            <select class="select-option" name="acumulados">
+              <option value="nao">Sem peso acumulados</option>
+              <option value="sim">Peso acumulados</option>
+            </select>
+            <select class="select-option" name="quantidade">
+              <option value="15">15 números</option>
+              <option value="16">16 números</option>
+              <option value="17">17 números</option>
+              <option value="18">18 números</option>
+              <option value="19">19 números</option>
+              <option value="20">20 números</option>
+            </select>
+            <input type="submit" value="Aplicar" class="btn btn-primary botao_aplicar">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"><h4>Numeros</h4></th>
+          </tr>
+        </thead>
+        <tbody>      
+            <tr>
+              <td class="numeros"><h4><%= numeros.sort((a, b)=> a - b).toString() %> </h4></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="container">
+      <a href="http://api/concursos/mais-sorteados"><h6>Api - Números mais sorteados</h6></a>
+      <a href="http://api/concursos/ultimo-sorteio"><h6>Api - Último sorteio</h6></a>
+      <a href="http://api/concursos?peso=sim&acumulados=sim&quantidade=20"><h6>Api - Indicação</h6></a>
+    </div>
+  </main>
+  <footer class="footer">
+    <p>O resultado é meramente expeculativo e a utilização fica sob total responsabilidade do usuário</p>
+    <a href="https://www.linkedin.com/in/alessandro-l-menezes-57906b71/"><p><img src="/images/lkdin.png" alt="logo" class="logo">Alessandro dev</p></a>
+  </footer>
+</body>
 </html>

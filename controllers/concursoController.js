@@ -1,4 +1,4 @@
-const { Concurso, NumeroSorteado } = require('../models');
+const { Concurso, NumeroSorteado, Frequencia } = require('../models');
 const algoritmo = require('../middlewares/algoritmo');
 const result = require('../middlewares/result');
 module.exports = {
@@ -55,7 +55,43 @@ module.exports = {
 
             await algoritmo.apuracao([...concursos, ...ultimosConcursos, ...geral]);    
             const resultado = await result.calculate();
-            return res.status(200).json({msg:'Lotofácil: Números mais prováveis de sair no intervalo de 7 jogos', resultado: resultado.slice(0, quantidade) });
+            return ({ resultado: resultado.slice(0, quantidade) });
+            
+        } catch (error) {
+            console.error(error.message);
+            return status(500).json({ error: error.message });
+        }
+    },
+
+    numerosMaisSorteados: async (req, res) => {
+        try {
+            const numeros = await Frequencia.findAll({
+                attributes: ['frequencia', 'numero_id'],
+                order:[['frequencia', 'DESC']]
+            });
+            return res.status(200).json({ numeros });
+        } catch (error) {
+            console.error(error.message);
+            return status(500).json({ error: error.message });
+        }
+    },
+
+    ultimoSorteio: async (req, res) => {
+        try {
+            const sorteio = await Concurso.findAll({
+                include: [
+                    {
+                        model: NumeroSorteado,
+                        as: 'numeros',
+                        required: true,
+                        attributes: ['numero']
+                    }
+                ],
+                limit: 1,
+                order: [['id', 'DESC']],
+            });
+
+            return res.status(200).json({ sorteio });
             
         } catch (error) {
             console.error(error.message);
