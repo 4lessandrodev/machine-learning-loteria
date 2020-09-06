@@ -6,6 +6,8 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', concursoController.index);
 
+router.get('/algoritmo', concursoController.algoritmo);
+
 router.get('/mais-sorteados', concursoController.numerosMaisSorteados);
 
 router.get('/ultimo-sorteio', concursoController.ultimoSorteio);
